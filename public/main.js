@@ -8,7 +8,9 @@ const submit = document.querySelector("#submit");
 const responseField = document.querySelector("#responseField");
 
 // AJAX function
-const getSuggestions = () => {};
+const getSuggestions = () => {
+  const wordQuery = inputField.value;
+};
 
 // Clears previous results and display results to webpage
 const displaySuggestions = (event) => {
