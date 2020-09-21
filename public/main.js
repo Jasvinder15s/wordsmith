@@ -9,6 +9,7 @@ const responseField = document.querySelector("#responseField");
 
 // AJAX function
 // Code goes here
+const getSuggestions = async () => {};
 
 // Clear previous results and display results to webpage
 const displaySuggestions = (event) => {
