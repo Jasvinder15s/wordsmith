@@ -8,24 +8,37 @@ const code = fs.readFileSync("public/main.js", "utf8");
 describe("", function () {
   it("", function () {
     let structureOne = function () {
-      const getSuggestions = () => {
-        const endpoint = `${url}${queryParams}${$wordQuery}${additionalParams}${topicQuery}`;
+      const getSuggestions = async () => {
+        try {
+          if (response.ok) {
+            const jsonResponse = _;
+            renderRawResponse(jsonResponse);
+          }
+        } catch (error) {
+          console.log(error);
+        }
       };
     };
 
     let structureTwo = function () {
-      const getSuggestions = () => {
-        const endpoint =
-          url + queryParams + wordQuery + additionalParams + topicQuery;
+      const getSuggestions = async () => {
+        try {
+          if (response.ok) {
+            const jsonResponse = _;
+            renderResponse(jsonResponse);
+          }
+        } catch (error) {
+          console.log(error);
+        }
       };
     };
 
     let isMatchOne = Structured.match(code, structureOne);
     let isMatchTwo = Structured.match(code, structureTwo);
-
-    assert.isOk(
-      isMatchOne || isMatchTwo,
-      "Did you set `const endpoint` equal to a concatenated string of `url`, `queryParams`, `wordQuery`, `additionalParams`, and `topicQuery` respectively?"
+    assert.isNotOk(
+      isMatchOne,
+      "Did you delete `renderRawResponse(jsonResponse)`?"
     );
+    assert.isOk(isMatchTwo, "Did you call `renderResponse(jsonResponse)`?");
   });
 });
