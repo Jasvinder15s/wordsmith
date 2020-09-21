@@ -12,11 +12,15 @@ const getSuggestions = () => {
   const wordQuery = inputField.value;
   const endpoint = `${url}${queryParams}${wordQuery}`;
 
-  fetch(endpoint, { cache: "no-cache" }).then((response) => {
-    if (response.ok) {
-      renderJsonResponse(response);
-    }
-  });
+  fetch(endpoint, { cache: "no-cache" }).then(
+    (response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("Request failed!");
+    },
+    (networkError) => console.log(networkError.message)
+  );
 };
 
 // Clears previous results and display results to webpage
